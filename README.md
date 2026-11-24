@@ -1,4 +1,4 @@
-# kaggle-minimax-stack
+# kaggle-video-stack
 
 把 `kaggle-minimax` 的引擎脚本和它依赖的 `Wan2GP` 底座打包进同一个仓库，用来固定版本、离线复用、或者二次分发。
 
@@ -53,8 +53,8 @@ python engine/run_ltx25.py
 
 ```python
 # Step 0
-REPO_URL = "https://github.com/<you>/kaggle-minimax-stack.git"
-REPO_DIR = os.path.join(WORK, "kaggle-minimax-stack")
+REPO_URL = "https://github.com/chenchen1008/kaggle-video-stack.git"
+REPO_DIR = os.path.join(WORK, "kaggle-video-stack")
 
 # Step 1b：不再单独拉 Wan2GP，改成软链仓库内的 vendor 副本
 if not os.path.exists(WAN2GP_DIR):
