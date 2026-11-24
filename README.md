@@ -47,14 +47,27 @@ python engine/run_ltx25.py
 
 ## 和 notebooks 的关系
 
-`notebooks/` 里三册目前仍然 `git clone` 原仓库并单独固定 Wan2GP。要把它们指向本仓库，只改 Step 0 的一行：
+`notebooks/` 里的三册**默认仍然 clone 原仓库并单独固定 Wan2GP**，不依赖本仓库，可以直接跑。
+
+想把它们切到本仓库（离线/固定版本），需要改三处：
 
 ```python
+# Step 0
 REPO_URL = "https://github.com/<you>/kaggle-minimax-stack.git"
 REPO_DIR = os.path.join(WORK, "kaggle-minimax-stack")
+
+# Step 1b：不再单独拉 Wan2GP，改成软链仓库内的 vendor 副本
+if not os.path.exists(WAN2GP_DIR):
+    os.symlink(os.path.join(REPO_DIR, "vendor", "wan2gp"), WAN2GP_DIR)
 ```
 
-这样 Step 1a 会拉到本仓库（引擎在 `engine/` 下），Step 1b 仍然会单独拉 Wan2GP——两者不冲突；如果想直接用 `vendor/wan2gp`，把 1b 换成软链并跳过 `git fetch` 即可。
+```python
+# Step 3
+ENGINE = os.path.join(REPO_DIR, "engine", "frontend.py")        # H3
+# ENGINE = os.path.join(REPO_DIR, "engine", "run_ltx25.py")     # LTX-2.5
+```
+
+LTX 那两册的 cwd 仍设 `WORK`，软链 `WAN2GP_DIR` 后 `./Wan2GP` 能正常解析；H3 的 `../Wan2GP` 也指向同一个软链。
 
 ## 许可
 
