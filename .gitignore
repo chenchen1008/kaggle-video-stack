@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+*.so
+.ipynb_checkpoints/
+
+# 运行时产物与权重（不入库）
+.cache/
+outputs/
+*.safetensors
+*.gguf
+*.ckpt
+*.pt
+*.pth
+*.mp4
+*.webm
+*.wav
+*.mp3
+*.log
+
+# 本地环境
+.venv/
+venv/
+.env
